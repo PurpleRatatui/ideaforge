@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Flame, GraduationCap, Handshake, Hexagon, Sparkles, Target, Users, Zap } from "lucide-react";
+import { ArrowRight, CalendarDays, Flame, GraduationCap, Handshake, Hexagon, Target, Users, Zap } from "lucide-react";
 
 type Card = [string, string, string];
 type SimpleCard = [string, string];
@@ -271,8 +271,7 @@ export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
     <main className="sis-shell" lang={copy.lang}>
       <header className="sis-header wrap">
         <Link className="sis-wordmark" href={copy.homePath} aria-label={copy.aria.home}>
-          <span className="brand-icon"><Sparkles size={22} /></span>
-          She Is <span>Solana</span>
+          <img src="/images/she-is-solana-logo.png" alt="She Is Solana" />
         </Link>
         <nav className="sis-nav" aria-label={copy.aria.nav}>
           <a href="#jornada">{copy.nav.journey}</a>

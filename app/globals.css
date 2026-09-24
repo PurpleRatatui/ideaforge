@@ -1357,16 +1357,13 @@ h1 > span {
 .sis-wordmark {
   display: inline-flex;
   align-items: center;
-  font-size: 1.35rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
-.sis-wordmark span:not(.brand-icon) {
-  margin-left: 5px;
-  color: var(--coral);
+.sis-wordmark img {
+  display: block;
+  width: min(292px, 38vw);
+  height: auto;
 }
 
 .sis-nav {
@@ -2396,11 +2393,16 @@ h1 > span {
 
 @media (max-width: 540px) {
   .sis-wordmark {
-    font-size: 1.05rem;
+    max-width: 178px;
+  }
+
+  .sis-wordmark img {
+    width: 178px;
+    max-width: 40vw;
   }
 
   .sis-nav a[href="#jornada"],
-  .sis-nav a[href="#apoio"] {
+  .sis-nav a[href="#mentoria"] {
     display: none;
   }
 

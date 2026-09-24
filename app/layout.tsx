@@ -3,7 +3,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "She Is Solana",
   description: "Aulas gratuitas, encontros e mentorias para mulheres que querem entender Web3 e construir na Solana, por Carol Labs com apoio da Superteam Brasil.",
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  icons: { icon: "/images/she-is-solana-icon.png", shortcut: "/images/she-is-solana-icon.png", apple: "/images/she-is-solana-icon.png" },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="pt-BR"><body>{children}</body></html>;
