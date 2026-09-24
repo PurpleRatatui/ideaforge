@@ -1755,41 +1755,6 @@ h1 > span {
   line-height: 1;
 }
 
-.sis-support-note {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 18px;
-  padding: 16px 18px;
-  color: var(--cream);
-  background: var(--superteam-dark);
-  border: 2px solid var(--ink);
-  border-radius: 8px;
-  box-shadow: 7px 7px 0 var(--superteam-yellow);
-}
-
-.sis-support-note p {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: #fff8dd;
-}
-
-.sis-support-note a {
-  display: inline-flex;
-  flex-shrink: 0;
-  gap: 8px;
-  align-items: center;
-  font-size: 0.76rem;
-  font-weight: 900;
-  color: var(--superteam-yellow);
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-
 .sis-people-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
@@ -2384,7 +2349,6 @@ h1 > span {
   }
 
   .sis-roaster-cta,
-  .sis-support-note,
   .sis-next-event {
     flex-direction: column;
     align-items: flex-start;

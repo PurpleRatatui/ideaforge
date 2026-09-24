@@ -26,7 +26,7 @@ type LandingCopy = {
   about: { label: string; title: string; cards: Card[] };
   features: { label: string; title: string; cards: Card[] };
   journey: { label: string; title: string; items: Card[] };
-  organizers: { label: string; title: string; cards: SimpleCard[]; note: string; link: string };
+  organizers: { label: string; title: string; cards: SimpleCard[] };
   mentorship: { label: string; title: string; body: string; people: PersonCard[]; event: { label: string; title: string; body: string; cta: string; href: string } };
   hackathon: { label: string; title: string; body: string; official: string; date: string; edition: string; cardText: string };
   roaster: { label: string; title: string; body: string; cta: string };
@@ -90,8 +90,6 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
         ["Superteam Brasil", "Entra com comunidade, recursos de Solana e conexão com builders que já estão criando no Brasil."],
         ["Mentoras e comunidade", "Ajudam nas decisões de produto, mercado, carreira, pitch e execução durante o sprint."],
       ],
-      note: "A Superteam Brasil apoia a jornada com divulgação, recursos para participantes e conexão com a comunidade Solana local.",
-      link: "Ver marca Superteam Brasil",
     },
     mentorship: {
       label: "PESSOAS E MENTORIA",
@@ -203,8 +201,6 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
         ["Superteam Brazil", "Brings community, Solana resources, and access to builders already creating in Brazil."],
         ["Mentors and community", "Help with product, market, career, pitch, and execution decisions during the sprint."],
       ],
-      note: "Superteam Brazil supports the journey with outreach, participant resources, and connections to the local Solana community.",
-      link: "See Superteam Brazil brand",
     },
     mentorship: {
       label: "PEOPLE AND MENTORSHIP",
@@ -368,10 +364,6 @@ export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
               <p>{text}</p>
             </article>
           ))}
-        </div>
-        <div className="sis-support-note">
-          <p>{copy.organizers.note}</p>
-          <a href="https://www.superteam.com.br/pt/brand" target="_blank" rel="noreferrer">{copy.organizers.link} <ArrowRight size={15} /></a>
         </div>
       </section>
 
