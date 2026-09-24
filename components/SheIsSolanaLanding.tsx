@@ -109,7 +109,7 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
           role: "Mentora de produto e GTM",
           image: "/images/ana-westfal.webp",
           alt: "Retrato de Ana Westfal",
-          bio: "Ana trabalha na interseção de IA, blockchain e growth de produto. Mestre em Negócios Digitais pela USP, passou por Procter & Gamble, MetaMask e Uniswap. Hoje lidera estratégia e crescimento de produto na HOUS3, startup que desenvolve software sob demanda e produtos próprios em cibersegurança, processos agênticos e otimização de KYC.",
+          bio: "Ana trabalha na interseção de IA, blockchain e growth de produto. Mestre em Negócios Digitais pela USP, passou por Procter & Gamble, MetaMask e Uniswap. Hoje lidera estratégia e crescimento de produto na HOUS3, startup que desenvolve software sob demanda e produtos próprios em cibersegurança e processos agênticos.",
           links: [
             { label: "Site", href: "https://anawestfal.xyz" },
             { label: "X", href: "https://x.com/anawestfal" },
@@ -220,7 +220,7 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
           role: "Product and GTM mentor",
           image: "/images/ana-westfal.webp",
           alt: "Portrait of Ana Westfal",
-          bio: "Ana works at the intersection of AI, blockchain, and product growth. She holds a master’s degree in Digital Business from USP and has worked at Procter & Gamble, MetaMask, and Uniswap. She now leads product strategy and growth at HOUS3, a startup building custom software and products in cybersecurity, agentic processes, and KYC optimization.",
+          bio: "Ana works at the intersection of AI, blockchain, and product growth. She holds a master’s degree in Digital Business from USP and has worked at Procter & Gamble, MetaMask, and Uniswap. She now leads product strategy and growth at HOUS3, a startup building custom software and products in cybersecurity and agentic processes.",
           links: [
             { label: "Website", href: "https://anawestfal.xyz" },
             { label: "X", href: "https://x.com/anawestfal" },
