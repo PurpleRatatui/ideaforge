@@ -120,6 +120,14 @@ export default function Home() {
             <h1 id="headline">Your idea.<br/>Under fire.<br/><span>Built better.</span></h1>
             <p className="hero-description">Find the holes before the market does. Get a brutal reality check, sharpen your idea, and turn what survives into a go-to-market plan.</p>
             <div className="engine-line"><span>THE ONE–TWO PUNCH</span><div><Flame size={16}/> KillMyIdea <span className="engine-plus">+</span><Hexagon size={17}/> Hivemind</div></div>
+            <div className="reference-collage" aria-hidden="true">
+              <div className="collage-photo photo-one" />
+              <div className="collage-photo photo-two" />
+              <div className="collage-photo photo-three" />
+              <div className="collage-ribbon">SCORE / REBUILD / GTM</div>
+              <div className="collage-badge">01/03</div>
+              <div className="collage-mark">FORGE</div>
+            </div>
           </div>
           <div className="input-area">
             <div className="card-note"><span>Big ambition. Small ego.</span><ArrowDown size={22}/></div>
