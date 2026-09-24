@@ -1612,6 +1612,14 @@ h1 > span {
   text-transform: uppercase;
 }
 
+.sis-section-intro {
+  max-width: 820px;
+  margin: -8px 0 28px 284px;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #4e5169;
+}
+
 .sis-grid {
   display: grid;
   gap: 18px;
@@ -1783,6 +1791,145 @@ h1 > span {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
+}
+
+.sis-people-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.sis-person-card {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.42fr) minmax(0, 0.58fr);
+  min-height: 430px;
+  overflow: hidden;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 9px 9px 0 var(--yellow);
+}
+
+.sis-person-card.ana {
+  background: #dff4ef;
+  box-shadow-color: var(--coral);
+}
+
+.sis-person-photo {
+  min-height: 100%;
+  background: var(--lavender);
+  border-right: 2px solid var(--ink);
+}
+
+.sis-person-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sis-person-card.carol .sis-person-photo {
+  background: #fff;
+}
+
+.sis-person-card.carol .sis-person-photo img {
+  object-position: center top;
+}
+
+.sis-person-copy {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.sis-person-copy .sis-card-eyebrow {
+  align-self: flex-start;
+  margin-top: 0;
+}
+
+.sis-person-copy h3,
+.sis-next-event h3 {
+  margin: 18px 0 12px;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.sis-person-copy p,
+.sis-next-event p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: #4e5169;
+}
+
+.sis-person-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 22px;
+  margin-top: auto;
+}
+
+.sis-person-links a {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 9px;
+  font-size: 0.69rem;
+  font-weight: 900;
+  color: var(--ink);
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.sis-person-links a:hover {
+  color: var(--cream);
+  background: var(--purple);
+}
+
+.sis-person-links .sis-person-cta {
+  color: var(--cream);
+  background: var(--purple);
+}
+
+.sis-person-links .sis-person-cta:hover {
+  color: var(--ink);
+  background: var(--yellow);
+}
+
+.sis-next-event {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 24px;
+  color: var(--cream);
+  background: var(--superteam-dark);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 9px 9px 0 var(--teal);
+}
+
+.sis-next-event .mono {
+  color: var(--superteam-yellow);
+  font-weight: 900;
+}
+
+.sis-next-event h3 {
+  color: var(--cream);
+}
+
+.sis-next-event p {
+  max-width: 720px;
+  color: #fff8dd;
 }
 
 .sis-hackathon {
@@ -2158,8 +2305,23 @@ h1 > span {
   }
 
   .sis-timeline,
-  .sis-grid.three {
+  .sis-grid.three,
+  .sis-people-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sis-person-card {
+    grid-template-columns: 1fr;
+  }
+
+  .sis-person-photo {
+    border-right: 0;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .sis-person-photo img {
+    min-height: 340px;
+    max-height: 420px;
   }
 }
 
@@ -2203,9 +2365,14 @@ h1 > span {
     font-size: clamp(2.55rem, 11vw, 4.4rem);
   }
 
+  .sis-section-intro {
+    margin: 0 0 24px;
+  }
+
   .sis-grid.two,
   .sis-grid.three,
-  .sis-timeline {
+  .sis-timeline,
+  .sis-people-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2220,7 +2387,8 @@ h1 > span {
   }
 
   .sis-roaster-cta,
-  .sis-support-note {
+  .sis-support-note,
+  .sis-next-event {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -2247,9 +2415,18 @@ h1 > span {
   .sis-program-card,
   .sis-hackathon-main,
   .sis-hackathon-card,
-  .sis-roaster-cta {
+  .sis-roaster-cta,
+  .sis-next-event {
     padding: 22px;
     box-shadow: 8px 8px 0 var(--coral);
+  }
+
+  .sis-person-copy {
+    padding: 20px;
+  }
+
+  .sis-person-photo img {
+    min-height: 300px;
   }
 
   .sis-program-card::after {
