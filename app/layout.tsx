@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "She Is Solana",
-  description: "Jornada She Is Solana para aprender, validar ideias e se preparar para hackathons como a Colosseum.",
+  description: "Iniciativa educacional e comunitária da Carol Labs com apoio da Superteam Brasil para aprender, validar ideias e construir no ecossistema Solana.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

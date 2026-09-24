@@ -32,6 +32,9 @@
   --coral: #c98257;
   --yellow: #ffcc5c;
   --teal: #46c5bd;
+  --superteam-green: #008c4c;
+  --superteam-dark: #1b231d;
+  --superteam-yellow: #ffd23f;
 }
 
 @theme inline {
@@ -1322,8 +1325,8 @@ h1 > span {
 
 .sis-shell::after {
   position: absolute;
-  top: 520px;
-  left: max(18px, calc((100vw - 1180px) / 2 - 36px));
+  top: 590px;
+  left: max(-58px, calc((100vw - 1180px) / 2 - 94px));
   z-index: 0;
   width: 110px;
   height: 110px;
@@ -1384,6 +1387,21 @@ h1 > span {
 .sis-nav a:hover {
   color: var(--purple);
   border-bottom-color: var(--purple);
+}
+
+.sis-language {
+  padding: 8px 10px !important;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 2px solid var(--ink) !important;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 var(--teal);
+}
+
+.sis-language:hover {
+  color: var(--cream) !important;
+  background: var(--superteam-green);
+  border-bottom-color: var(--ink) !important;
 }
 
 .sis-hero {
@@ -1626,8 +1644,52 @@ h1 > span {
   box-shadow-color: var(--coral);
 }
 
+.sis-panel.feature-1 {
+  background: var(--cream);
+  box-shadow-color: var(--blue);
+}
+
+.sis-panel.feature-2 {
+  background: var(--lavender);
+  box-shadow-color: var(--yellow);
+}
+
+.sis-panel.feature-3 {
+  background: #dff4ef;
+  box-shadow-color: var(--coral);
+}
+
+.sis-panel.superteam {
+  color: var(--cream);
+  background: var(--superteam-green);
+  box-shadow-color: var(--superteam-yellow);
+}
+
+.sis-panel.superteam p {
+  color: #fff8dd;
+}
+
 .sis-panel svg {
   color: var(--purple);
+}
+
+.sis-panel.superteam svg {
+  color: var(--superteam-yellow);
+}
+
+.sis-card-eyebrow {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 7px 9px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  text-transform: uppercase;
 }
 
 .sis-panel h3,
@@ -1686,6 +1748,41 @@ h1 > span {
   font-family: Impact, "Arial Black", Arial, Helvetica, sans-serif;
   font-size: 3.2rem;
   line-height: 1;
+}
+
+.sis-support-note {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 16px 18px;
+  color: var(--cream);
+  background: var(--superteam-dark);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 7px 7px 0 var(--superteam-yellow);
+}
+
+.sis-support-note p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #fff8dd;
+}
+
+.sis-support-note a {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.76rem;
+  font-weight: 900;
+  color: var(--superteam-yellow);
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 .sis-hackathon {
@@ -2122,7 +2219,8 @@ h1 > span {
     transform: none;
   }
 
-  .sis-roaster-cta {
+  .sis-roaster-cta,
+  .sis-support-note {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -2133,7 +2231,8 @@ h1 > span {
     font-size: 1.05rem;
   }
 
-  .sis-nav a[href="#jornada"] {
+  .sis-nav a[href="#jornada"],
+  .sis-nav a[href="#apoio"] {
     display: none;
   }
 
