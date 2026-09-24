@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import IdeaRoasterPage from "@/components/IdeaRoasterPage";
 
 export const metadata: Metadata = {
-  title: "Idea Roaster — She Is Solana",
-  description: "Teste sua ideia para o hackathon: receba um roast, reconstrua a proposta e gere um plano de go-to-market com Hivemind.",
+  title: "Idea Roaster — Teste sua ideia para a Colosseum",
+  description: "Teste uma ideia de hackathon, veja os pontos fracos e use Hivemind para ajustar proposta, MVP e go-to-market.",
 };
 
 export default function RoasterPage() {

@@ -33,71 +33,71 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
     hero: {
       kicker: "Educação gratuita · comunidade · prática onchain",
       title: "She Is Solana",
-      description: "Uma iniciativa educacional e comunitária para formação e inclusão de mulheres no ecossistema Web3 e na tecnologia blockchain da rede Solana, desenvolvida no Brasil pela Carol Labs em parceria com a Superteam Brasil.",
+      description: "Criada no Brasil pela Carol Labs com apoio da Superteam Brasil, a She Is Solana reúne aulas gratuitas, encontros e mentorias para mulheres que querem entender Web3 e construir na Solana.",
       primary: "Testar minha ideia",
       secondary: "Ver a jornada",
     },
     program: {
       label: "Jornada She Is Solana",
       year: "2026",
-      title: "Da primeira aula ao pitch de hackathon.",
-      body: "Meetups online e presenciais, workshops e mentorias técnicas para conectar mulheres desenvolvedoras, criadoras e entusiastas do mercado cripto.",
+      title: "Da primeira aula ao pitch da Colosseum.",
+      body: "Encontros online e presenciais, workshops e mentorias técnicas para tirar dúvidas, formar time e transformar uma ideia em projeto.",
       tags: ["Carol Labs", "Superteam Brasil", "Solana"],
     },
     about: {
       label: "O QUE É",
-      title: "Um ponto de entrada para aprender, construir e pertencer.",
+      title: "Um começo com aula, gente por perto e prática.",
       cards: [
-        ["She Is Solana", "Formação e inclusão", "Uma jornada criada para aproximar mulheres da Web3 com conteúdo, comunidade e prática em Solana — do vocabulário básico à construção de produtos."],
-        ["Para quem é", "Builders, criadoras e curiosas", "Para desenvolvedoras, founders, designers, marketers, PMs e entusiastas que querem entender o ecossistema e colaborar em projetos reais."],
+        ["She Is Solana", "Formação e inclusão", "Um programa para sair do vocabulário básico de Web3 e chegar a uma ideia de produto em Solana."],
+        ["Para quem é", "Builders, criadoras e curiosas", "Para devs, founders, designers, PMs, marketers e curiosas que querem criar ou entrar em times no hackathon."],
       ],
     },
     features: {
       label: "PRINCIPAIS CARACTERÍSTICAS",
-      title: "Aprender de graça, se conectar e colocar a mão na massa.",
+      title: "Aula gratuita, encontro com gente construindo e projeto na mesa.",
       cards: [
-        ["Educação gratuita", "Aulas introdutórias e avançadas", "Conteúdos para entender Solana, Web3 e como criar aplicações descentralizadas com mais confiança."],
-        ["Comunidade e conexão", "Meetups, networking e mentoria", "Encontros online e presenciais em cidades brasileiras para fortalecer carreiras, repertório técnico e colaboração."],
-        ["Foco em prática", "Produtos antes de teoria infinita", "A jornada incentiva participantes a saírem da ideia, testarem hipóteses e criarem projetos aproveitando rapidez e baixas taxas da Solana."],
+        ["Educação gratuita", "Aulas introdutórias e avançadas", "Aulas para entender Solana, Web3 e como dApps são criados, do zero aos tópicos técnicos."],
+        ["Comunidade e conexão", "Meetups, networking e mentoria", "Meetups online e presenciais em capitais brasileiras, com networking, carreira e troca entre mulheres da tecnologia."],
+        ["Foco em prática", "Produtos antes de teoria infinita", "Cada etapa empurra a participante a escolher um problema, testar a hipótese e usar as vantagens da Solana, como velocidade e taxas baixas."],
       ],
     },
     journey: {
       label: "A JORNADA SHE IS SOLANA",
-      title: "Do primeiro contato com Solana ao projeto pronto para competir.",
+      title: "Do primeiro contato com Solana ao projeto que pode ser submetido.",
       items: [
-        ["01", "Entender o ecossistema", "Web3, Solana, oportunidades de mercado, linguagem de builders e como uma ideia vira uma startup onchain."],
-        ["02", "Encontrar uma ideia", "Mapear problemas reais, escolher um público inicial e transformar curiosidade em hipótese clara para hackathon."],
-        ["03", "Testar antes de codar", "Usar o roaster para receber feedback brutal, melhorar a proposta com Hivemind e sair com um plano de go-to-market."],
-        ["04", "Entrar na arena", "Chegar na Colosseum com narrativa, MVP, pitch, validação inicial e próximos passos para competir com seriedade."],
+        ["01", "Entender o ecossistema", "Web3, Solana, carteiras, dApps, oportunidades de mercado e o vocabulário que aparece em um hackathon."],
+        ["02", "Encontrar uma ideia", "Escolher um problema real, uma usuária inicial e uma hipótese que caiba no tempo da competição."],
+        ["03", "Testar antes de codar", "Levar a ideia ao roaster, receber feedback direto e usar Hivemind para ajustar proposta, MVP e distribuição."],
+        ["04", "Entrar no hackathon", "Preparar narrativa, MVP, pitch, validação inicial e próximos passos para a submissão na Colosseum."],
       ],
     },
     organizers: {
       label: "QUEM ORGANIZA",
       title: "Carol Labs com apoio da Superteam Brasil.",
       cards: [
-        ["Carol Labs", "Desenha a jornada, curadoria de conteúdo e rituais para transformar aprendizado em projetos."],
-        ["Superteam Brasil", "Apoia a iniciativa com ecossistema, comunidade, recursos e conexão com builders da rede Solana no Brasil."],
-        ["Mentoras e comunidade", "Apoiam decisões de produto, mercado, carreira, pitch e execução durante o sprint."],
+        ["Carol Labs", "Cuida do desenho do programa, da curadoria de conteúdo e dos encontros que transformam aula em projeto."],
+        ["Superteam Brasil", "Entra com comunidade, recursos de Solana e conexão com builders que já estão criando no Brasil."],
+        ["Mentoras e comunidade", "Ajudam nas decisões de produto, mercado, carreira, pitch e execução durante o sprint."],
       ],
-      note: "A paleta de apoio usa referências da marca Superteam Brasil: verde esmeralda, amarelo e off-white.",
+      note: "A Superteam Brasil apoia a jornada com divulgação, recursos para participantes e conexão com a comunidade Solana local.",
       link: "Ver marca Superteam Brasil",
     },
     hackathon: {
       label: "AGORA: COLOSSEUM",
-      title: "Estamos organizando a entrada para o Crypto World’s Fair.",
-      body: "A Colosseum trata seus hackathons como competições globais online para founders: quatro semanas para transformar uma hipótese em produto, narrativa, tração inicial e submissão clara. A edição ativa é o Crypto World’s Fair, de 14 de setembro a 12 de outubro de 2026.",
+      title: "Agora: preparação para o Crypto World’s Fair.",
+      body: "Na Colosseum, o hackathon funciona como competição de startups: em quatro semanas, o time precisa mostrar produto, narrativa, sinais de demanda e uma submissão clara. A edição ativa é o Crypto World’s Fair, de 14 de setembro a 12 de outubro de 2026.",
       official: "Página oficial da Colosseum",
       date: "14 set → 12 out",
       edition: "Crypto World’s Fair 2026",
-      cardText: "Antes de construir, valide se a ideia tem problema real, público inicial, diferencial e caminho de distribuição.",
+      cardText: "Antes de abrir o editor, veja se a ideia tem problema real, público inicial, diferencial e caminho de distribuição.",
     },
     roaster: {
       label: "FERRAMENTA DA JORNADA",
-      title: "Passe sua ideia pelo roaster antes de entrar na arena.",
-      body: "O roaster usa KillMyIdea para encontrar furos, depois Hivemind para dar uma forma melhor ao projeto e criar um plano de go-to-market para o hackathon.",
+      title: "Use o roaster antes de entrar no hackathon.",
+      body: "O roaster pressiona a ideia com KillMyIdea e usa Hivemind para ajustar a proposta, o MVP e o plano de go-to-market para o hackathon.",
       cta: "Abrir o roaster",
     },
-    footer: { text: "She Is Solana · Jornada para builders", cta: "Testar uma ideia" },
+    footer: { text: "She Is Solana · Educação, comunidade e Solana", cta: "Testar uma ideia" },
   },
   en: {
     lang: "en",
@@ -109,71 +109,71 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
     hero: {
       kicker: "Free education · community · onchain practice",
       title: "She Is Solana",
-      description: "An educational and community initiative for the training and inclusion of women in Web3 and the Solana blockchain ecosystem, developed in Brazil by Carol Labs in partnership with Superteam Brazil.",
+      description: "Created in Brazil by Carol Labs with support from Superteam Brazil, She Is Solana brings together free classes, meetups, and mentorship for women who want to understand Web3 and build on Solana.",
       primary: "Test my idea",
       secondary: "See the journey",
     },
     program: {
       label: "She Is Solana Journey",
       year: "2026",
-      title: "From first class to hackathon pitch.",
-      body: "Online and in-person meetups, workshops, and technical mentorship connecting women developers, creators, and crypto-curious builders.",
+      title: "From first class to a Colosseum pitch.",
+      body: "Online and in-person meetups, workshops, and technical mentorship to answer questions, form teams, and turn an idea into a project.",
       tags: ["Carol Labs", "Superteam Brazil", "Solana"],
     },
     about: {
       label: "WHAT IT IS",
-      title: "An entry point to learn, build, and belong.",
+      title: "A starting point with classes, people, and practice.",
       cards: [
-        ["She Is Solana", "Training and inclusion", "A journey designed to bring more women into Web3 through content, community, and hands-on Solana practice — from basic vocabulary to product building."],
-        ["Who it is for", "Builders, creators, and curious people", "For developers, founders, designers, marketers, PMs, and enthusiasts who want to understand the ecosystem and collaborate on real projects."],
+        ["She Is Solana", "Training and inclusion", "A program that takes participants from basic Web3 vocabulary to a Solana product idea."],
+        ["Who it is for", "Builders, creators, and curious people", "For developers, founders, designers, PMs, marketers, and curious people who want to build or join hackathon teams."],
       ],
     },
     features: {
       label: "KEY PROGRAM FEATURES",
-      title: "Learn for free, connect with people, and build in public.",
+      title: "Free classes, builder meetups, and a project on the table.",
       cards: [
-        ["Free education", "Introductory and advanced classes", "Content to understand Solana, Web3, and how to create decentralized applications with more confidence."],
-        ["Community and connection", "Meetups, networking, and mentorship", "Online and in-person events in Brazilian cities to strengthen careers, technical confidence, and collaboration."],
-        ["Practice first", "Products over endless theory", "The journey encourages participants to move from idea to hypothesis testing and product building, using Solana’s speed and low fees."],
+        ["Free education", "Introductory and advanced classes", "Classes on Solana, Web3, and how dApps are built, from zero to technical topics."],
+        ["Community and connection", "Meetups, networking, and mentorship", "Online and in-person meetups in Brazilian capitals, with networking, career conversations, and exchange among women in tech."],
+        ["Practice first", "Products over endless theory", "Each step pushes participants to choose a problem, test the hypothesis, and use Solana’s speed and low fees."],
       ],
     },
     journey: {
       label: "THE SHE IS SOLANA JOURNEY",
-      title: "From first contact with Solana to a project ready to compete.",
+      title: "From first contact with Solana to a project ready to submit.",
       items: [
-        ["01", "Understand the ecosystem", "Web3, Solana, market opportunities, builder language, and how an idea can become an onchain startup."],
-        ["02", "Find an idea", "Map real problems, choose an initial audience, and turn curiosity into a clear hackathon hypothesis."],
-        ["03", "Test before coding", "Use the roaster for direct feedback, improve the concept with Hivemind, and leave with a go-to-market plan."],
-        ["04", "Enter the arena", "Arrive at Colosseum with a story, MVP, pitch, early validation, and next steps to compete seriously."],
+        ["01", "Understand the ecosystem", "Web3, Solana, wallets, dApps, market opportunities, and the vocabulary that shows up in a hackathon."],
+        ["02", "Find an idea", "Choose a real problem, an initial user, and a hypothesis that fits the competition timeline."],
+        ["03", "Test before coding", "Bring the idea to the roaster, get direct feedback, and use Hivemind to adjust the proposal, MVP, and distribution."],
+        ["04", "Enter the hackathon", "Prepare the story, MVP, pitch, early validation, and next steps for the Colosseum submission."],
       ],
     },
     organizers: {
       label: "WHO ORGANIZES IT",
       title: "Carol Labs with support from Superteam Brazil.",
       cards: [
-        ["Carol Labs", "Designs the journey, content curation, and rituals that turn learning into projects."],
-        ["Superteam Brazil", "Supports the initiative with ecosystem reach, community, resources, and connection to Solana builders in Brazil."],
-        ["Mentors and community", "Support product, market, career, pitch, and execution decisions throughout the sprint."],
+        ["Carol Labs", "Designs the program, curates the content, and hosts the sessions that turn classes into projects."],
+        ["Superteam Brazil", "Brings community, Solana resources, and access to builders already creating in Brazil."],
+        ["Mentors and community", "Help with product, market, career, pitch, and execution decisions during the sprint."],
       ],
-      note: "The support palette references Superteam Brazil’s brand: emerald green, yellow, and off-white.",
+      note: "Superteam Brazil supports the journey with outreach, participant resources, and connections to the local Solana community.",
       link: "See Superteam Brazil brand",
     },
     hackathon: {
       label: "NOW: COLOSSEUM",
-      title: "We are organizing the path into Crypto World’s Fair.",
-      body: "Colosseum frames its hackathons as global online competitions for founders: four weeks to turn a hypothesis into a product, narrative, early traction, and a clear submission. The active edition is Crypto World’s Fair, from September 14 to October 12, 2026.",
+      title: "Now: getting ready for Crypto World’s Fair.",
+      body: "At Colosseum, the hackathon works like a startup competition: in four weeks, each team needs to show a product, a story, demand signals, and a clear submission. The active edition is Crypto World’s Fair, from September 14 to October 12, 2026.",
       official: "Official Colosseum page",
       date: "Sep 14 → Oct 12",
       edition: "Crypto World’s Fair 2026",
-      cardText: "Before building, validate whether the idea has a real problem, initial audience, differentiation, and distribution path.",
+      cardText: "Before opening the editor, check whether the idea has a real problem, initial audience, differentiation, and distribution path.",
     },
     roaster: {
       label: "JOURNEY TOOL",
-      title: "Run your idea through the roaster before entering the arena.",
-      body: "The roaster uses KillMyIdea to find gaps, then Hivemind to reshape the project and create a go-to-market plan for the hackathon.",
+      title: "Use the roaster before entering the hackathon.",
+      body: "The roaster pressure-tests the idea with KillMyIdea and uses Hivemind to adjust the proposal, MVP, and go-to-market plan for the hackathon.",
       cta: "Open the roaster",
     },
-    footer: { text: "She Is Solana · Builder journey", cta: "Test an idea" },
+    footer: { text: "She Is Solana · Education, community, and Solana", cta: "Test an idea" },
   },
 };
 
@@ -181,6 +181,7 @@ const featureIcons = [GraduationCap, Handshake, Zap];
 const aboutIcons = [Hexagon, Users];
 
 export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
+  const roasterPath = copy.lang === "en" ? "/en/roaster" : "/roaster";
   return (
     <main className="sis-shell" lang={copy.lang}>
       <header className="sis-header wrap">
@@ -192,7 +193,7 @@ export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
           <a href="#jornada">{copy.nav.journey}</a>
           <a href="#hackathon">{copy.nav.hackathon}</a>
           <a href="#apoio">{copy.nav.support}</a>
-          <Link href="/roaster">{copy.nav.roaster}</Link>
+          <Link href={roasterPath}>{copy.nav.roaster}</Link>
           <Link className="sis-language" href={copy.alternatePath}>{copy.alternateLabel}</Link>
         </nav>
       </header>
@@ -203,7 +204,7 @@ export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
           <h1 id="sis-title" className="sis-title">{copy.hero.title}</h1>
           <p className="sis-description">{copy.hero.description}</p>
           <div className="sis-actions">
-            <Link className="sis-button" href="/roaster">{copy.hero.primary} <ArrowRight size={18} /></Link>
+            <Link className="sis-button" href={roasterPath}>{copy.hero.primary} <ArrowRight size={18} /></Link>
             <a className="sis-button secondary" href="#jornada">{copy.hero.secondary}</a>
           </div>
         </div>
@@ -313,12 +314,12 @@ export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
           <h2 id="roaster-title">{copy.roaster.title}</h2>
           <p>{copy.roaster.body}</p>
         </div>
-        <Link className="sis-button" href="/roaster"><Flame size={18} /> {copy.roaster.cta}</Link>
+        <Link className="sis-button" href={roasterPath}><Flame size={18} /> {copy.roaster.cta}</Link>
       </section>
 
       <footer className="sis-footer wrap">
         <span>{copy.footer.text}</span>
-        <Link href="/roaster">{copy.footer.cta} <ArrowRight size={14} /></Link>
+        <Link href={roasterPath}>{copy.footer.cta} <ArrowRight size={14} /></Link>
       </footer>
     </main>
   );
