@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, Check, Copy, Flame, Hexagon, LoaderCircle, RotateCcw, Sparkles, Target, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DIMENSION_LABELS, type DimensionKey } from "@/lib/killmyidea/questions";
-import { riskCopy, strengthCopy } from "@/lib/killmyidea/copy";
 import type { ResultModel } from "@/lib/killmyidea/types";
 
 const exampleIdea = "Um assistente de refeições com IA para famílias que lidam com alergia alimentar. Ele cria um cardápio semanal seguro, gera lista de compras e cobra R$ 49 por mês.";
@@ -107,7 +107,7 @@ export default function IdeaRoasterPage() {
     const timeout = window.setTimeout(() => controller.abort(), 160000);
     setHivemindPlan(null); setHivemindError(""); setHivemindLoading(true);
     try {
-      const response = await fetch("/api/hivemind", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ idea: ideaText, result: roastResult }), signal: controller.signal });
+      const response = await fetch("/api/hivemind", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ idea: ideaText, result: roastResult, locale: "pt-BR" }), signal: controller.signal });
       const data = await response.json() as HivemindPlan & { error?: string };
       if (!response.ok) throw new Error(data.error || "O Hivemind não conseguiu terminar o plano. Tente novamente.");
       if (run === hivemindRun.current) setHivemindPlan(data);
@@ -155,7 +155,7 @@ export default function IdeaRoasterPage() {
       <a className="skip-link" href="#idea">Pular para o formulário da ideia</a>
       <header className="site-header wrap">
         <a className="wordmark" href="/roaster" aria-label="Página inicial do Idea Roaster"><span className="brand-icon"><Flame size={23} fill="currentColor" /></span>idea<span className="brand-light">forge</span><span className="brand-period">.</span></a>
-        <nav aria-label="Navegação principal"><a href="/">She Is Solana</a><a href="#how-it-works">Como funciona</a><button onClick={showExample} disabled={loading}>Ver exemplo <ArrowRight size={15}/></button></nav>
+        <nav aria-label="Navegação principal"><Link href="/">She Is Solana</Link><a href="#how-it-works">Como funciona</a><button onClick={showExample} disabled={loading}>Ver exemplo <ArrowRight size={15}/></button></nav>
       </header>
       <main>
         <section className="hero wrap" aria-labelledby="headline">
@@ -213,22 +213,89 @@ export default function IdeaRoasterPage() {
 }
 function HivemindPanel({ mode, plan, loading, error, result, idea, copied, onCopy, onRetry, onNext }: { mode: "rebuild" | "launch"; plan: HivemindPlan | null; loading: boolean; error: string; result: ResultModel; idea: string; copied: boolean; onCopy: () => void; onRetry: () => void; onNext: () => void }) {
   const answer = mode === "rebuild" ? plan?.rebuild : plan?.gtm;
-  const label = mode === "rebuild" ? "AJUSTE HIVEMIND" : "GTM HIVEMIND";
-  const heading = mode === "rebuild" ? "Hivemind está ajustando a ideia." : "Agora há uma primeira rota até usuárias.";
+  const label = mode === "rebuild" ? "IDEIA AJUSTADA" : "PLANO DE GTM";
+  const heading = mode === "rebuild" ? "Aqui está uma versão mais clara para testar." : "Agora existe uma rota inicial até usuárias.";
+  const explainer = mode === "rebuild"
+    ? "Estas seções mostram o que mudou na ideia: cliente, problema, diferenciação, MVP e hipóteses que ainda precisam ser validadas."
+    : "Estas seções transformam a ideia ajustada em próximos passos: posicionamento, canal inicial, mensagem, plano de 30 dias e métricas.";
   if (loading && !answer) return <div className="handoff-panel hivemind-panel"><div className="section-label"><LoaderCircle className="spin" size={19}/> HIVEMIND ESTÁ TRABALHANDO</div><h3>{mode === "rebuild" ? "Criando o projeto e ajustando a ideia." : "Criando o projeto e rascunhando o plano de GTM."}</h3><div className="status-steps"><span>Novo projeto no Hivemind</span><span>Leitura de contexto</span><span>Ajuste e plano de GTM</span></div><p>Isso pode levar um pouco: o Hivemind cria um projeto novo antes de escrever a estratégia.</p></div>;
   if (error) return <div className="handoff-panel hivemind-panel"><div className="section-label"><Hexagon size={19}/> HIVEMIND PRECISA DE ATENÇÃO</div><h3>O Hivemind não conseguiu terminar esta etapa.</h3><p>{error}</p><div className="button-row"><Button className="next-button" onClick={onRetry}><RotateCcw size={16}/> Tentar Hivemind de novo</Button><Button variant="ghost" className="copy-button" onClick={onCopy}>{copied ? <Check size={17}/> : <Copy size={17}/>} {copied ? "Briefing copiado" : "Copiar briefing alternativo"}</Button></div><details><summary>Ler briefing alternativo</summary><pre>{createBrief(idea,result)}</pre></details></div>;
   if (!plan || !answer) return <div className="handoff-panel hivemind-panel"><div className="section-label"><Hexagon size={19}/> PRÓXIMO: HIVEMIND</div><h3>Transforme o teste em uma versão melhor.</h3><p>Hivemind cria um projeto a partir da análise, ajusta a ideia e rascunha o plano de go-to-market.</p><Button className="next-button" onClick={onRetry}>Iniciar Hivemind <ArrowRight size={18}/></Button></div>;
-  return <div className="hivemind-panel"><div className="section-label">{mode === "rebuild" ? <Sparkles size={19}/> : <Target size={19}/>} {label}</div><div className="project-strip"><span>Projeto criado no Hivemind</span><strong>{plan.project.ready ? "Contexto pronto" : plan.project.enrichmentStatus === "failed" ? "Contexto ainda utilizável" : "Contexto na fila"}</strong></div><h3>{heading}</h3><FormattedAnswer text={answer.response}/><Sources sources={answer.sources}/><Button className="next-button" onClick={onNext}>{mode === "rebuild" ? <>Criar plano de GTM <ArrowRight size={18}/></> : <><RotateCcw size={16}/> Testar outra ideia</>}</Button></div>;
+  return <div className="hivemind-panel"><div className="section-label">{mode === "rebuild" ? <Sparkles size={19}/> : <Target size={19}/>} {label}</div><div className="project-strip"><span>Projeto criado no Hivemind</span><strong>{plan.project.ready ? "Contexto pronto" : plan.project.enrichmentStatus === "failed" ? "Contexto ainda utilizável" : "Contexto na fila"}</strong></div><h3>{heading}</h3><p className="hivemind-explainer">{explainer}</p><FormattedAnswer text={answer.response}/><Sources sources={answer.sources}/><Button className="next-button" onClick={onNext}>{mode === "rebuild" ? <>Criar plano de GTM <ArrowRight size={18}/></> : <><RotateCcw size={16}/> Testar outra ideia</>}</Button></div>;
 }
+
+type AnswerSection = { title: string | null; lines: string[] };
+
+const titleTranslations: Record<string, string> = {
+  "sharper idea": "Ideia ajustada",
+  "initial customer": "Cliente inicial",
+  "problem and alternatives": "Problema e alternativas",
+  differentiation: "Diferenciação",
+  "small mvp": "MVP pequeno",
+  "pricing hypothesis": "Hipótese de preço",
+  "assumptions to validate": "Suposições para validar",
+  beachhead: "Nicho inicial",
+  positioning: "Posicionamento",
+  "first acquisition channel": "Primeiro canal de aquisição",
+  "sample message": "Mensagem exemplo",
+  "30-day plan": "Plano de 30 dias",
+  metrics: "Métricas",
+  "stop or pivot criteria": "Critérios para parar ou pivotar",
+};
+
 function FormattedAnswer({ text }: { text: string }) {
-  const blocks = text.trim().split(/\n{2,}/).filter(Boolean);
-  return <div className="hivemind-answer">{blocks.map((block, index) => {
-    const lines = block.split("\n").map(line => line.trim()).filter(Boolean);
-    const title = lines[0]?.replace(/^#{1,3}\s*/, "");
-    const hasHeading = /^#{1,3}\s/.test(lines[0] || "");
-    return <section key={`${index}-${title || "block"}`}>{hasHeading && <h4>{title}</h4>}{(hasHeading ? lines.slice(1) : lines).map((line, lineIndex) => <p key={`${index}-${lineIndex}`}>{line.replace(/^[-*]\s*/, "").replace(/^\d+\.\s*/, "").replace(/\*\*/g, "")}</p>)}</section>;
-  })}</div>;
+  const sections = parseAnswerSections(text);
+  return <div className="hivemind-answer">{sections.map((section, index) => <section key={`${index}-${section.title || "resposta"}`}><h4>{section.title || "Resposta do Hivemind"}</h4>{renderAnswerLines(section.lines, index)}</section>)}</div>;
 }
+
+function parseAnswerSections(text: string): AnswerSection[] {
+  const sections: AnswerSection[] = [];
+  let current: AnswerSection = { title: null, lines: [] };
+  for (const rawLine of text.trim().split("\n")) {
+    const line = rawLine.trim();
+    if (!line) continue;
+    const heading = line.match(/^#{1,4}\s+(.+)$/);
+    if (heading) {
+      if (current.title || current.lines.length) sections.push(current);
+      current = { title: normalizeAnswerTitle(heading[1]), lines: [] };
+    } else {
+      current.lines.push(line);
+    }
+  }
+  if (current.title || current.lines.length) sections.push(current);
+  return sections.length ? sections : [{ title: null, lines: [text.trim()] }];
+}
+
+function renderAnswerLines(lines: string[], sectionIndex: number) {
+  const elements: ReactNode[] = [];
+  let bullets: string[] = [];
+  const flushBullets = () => {
+    if (!bullets.length) return;
+    const items = bullets;
+    bullets = [];
+    elements.push(<ul key={`bullets-${sectionIndex}-${elements.length}`}>{items.map((item, itemIndex) => <li key={itemIndex}>{cleanAnswerLine(item)}</li>)}</ul>);
+  };
+  lines.forEach((line, lineIndex) => {
+    if (/^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line)) {
+      bullets.push(line.replace(/^[-*]\s+/, "").replace(/^\d+\.\s+/, ""));
+      return;
+    }
+    flushBullets();
+    elements.push(<p key={`line-${sectionIndex}-${lineIndex}`}>{cleanAnswerLine(line)}</p>);
+  });
+  flushBullets();
+  return elements;
+}
+
+function normalizeAnswerTitle(title: string) {
+  const clean = cleanAnswerLine(title).replace(/:$/, "");
+  return titleTranslations[clean.toLowerCase()] || clean;
+}
+
+function cleanAnswerLine(line: string) {
+  return line.replace(/\*\*/g, "").replace(/^[-*]\s*/, "").replace(/^\d+\.\s*/, "").trim();
+}
+
 function Sources({ sources }: { sources: HivemindAnswer["sources"] }) {
   if (!sources.length) return null;
   return <div className="source-list"><span className="mono">FONTES USADAS PELO HIVEMIND</span>{sources.map((source) => <p key={`${source.title}-${source.author || ""}`}>{source.title}{source.author ? <span> por {source.author}</span> : null}</p>)}</div>;

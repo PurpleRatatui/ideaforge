@@ -1,6 +1,6 @@
 import { validateIdea } from "@/lib/killmyidea/evaluate";
 import type { ResultModel } from "@/lib/killmyidea/types";
-import { HivemindError, resolveHivemindCredentials, shapeIdeaWithHivemind } from "@/lib/hivemind/client";
+import { HivemindError, type HivemindLocale, resolveHivemindCredentials, shapeIdeaWithHivemind } from "@/lib/hivemind/client";
 
 function json(body: unknown, status = 200) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
@@ -21,12 +21,13 @@ export async function POST(request: Request) {
     return json({ error: "Please submit a valid idea." }, 400);
   }
 
-  const record = payload && typeof payload === "object" ? payload as { idea?: unknown; result?: unknown } : {};
+  const record = payload && typeof payload === "object" ? payload as { idea?: unknown; result?: unknown; locale?: unknown } : {};
+  const locale: HivemindLocale = record.locale === "pt-BR" ? "pt-BR" : "en";
   const valid = validateIdea(record.idea);
-  if (!valid.ok) return json({ error: valid.error }, 400);
+  if (!valid.ok) return json({ error: locale === "pt-BR" ? "Descreva sua ideia com um pouco mais de detalhe." : valid.error }, 400);
 
   const result = parseResult(record.result);
-  if (!result) return json({ error: "The roast result is missing or invalid." }, 400);
+  if (!result) return json({ error: locale === "pt-BR" ? "O resultado do roast está ausente ou inválido." : "The roast result is missing or invalid." }, 400);
 
   let credentials = resolveHivemindCredentials(process.env);
   if (!credentials) {
@@ -36,16 +37,16 @@ export async function POST(request: Request) {
     } catch {}
   }
   if (!credentials) {
-    return json({ error: "Hivemind is not connected yet. Add a server-side Hivemind API key to create projects and plans." }, 503);
+    return json({ error: locale === "pt-BR" ? "Hivemind ainda não está conectado. Adicione a chave de API no servidor para criar projetos e planos." : "Hivemind is not connected yet. Add a server-side Hivemind API key to create projects and plans." }, 503);
   }
 
   try {
-    return json(await shapeIdeaWithHivemind(credentials, valid.idea, result));
+    return json(await shapeIdeaWithHivemind(credentials, valid.idea, result, locale));
   } catch (error) {
     if (error instanceof HivemindError) {
-      return json({ error: publicMessage(error) }, publicStatus(error));
+      return json({ error: publicMessage(error, locale) }, publicStatus(error));
     }
-    return json({ error: "Hivemind could not finish the project plan. Please try again." }, 502);
+    return json({ error: locale === "pt-BR" ? "O Hivemind não conseguiu terminar o plano do projeto. Tente novamente." : "Hivemind could not finish the project plan. Please try again." }, 502);
   }
 }
 
@@ -80,7 +81,14 @@ function publicStatus(error: HivemindError) {
   return 502;
 }
 
-function publicMessage(error: HivemindError) {
+function publicMessage(error: HivemindError, locale: HivemindLocale) {
+  if (locale === "pt-BR") {
+    if (error.status === 401 || error.status === 403) return "Hivemind precisa de uma chave do servidor com acesso a projetos e chat.";
+    if (error.status === 402) return "O plano ou faturamento do Hivemind bloqueou esta solicitação.";
+    if (error.status === 429) return "Hivemind está com limite de uso ou sem cota. Espere um pouco e tente novamente.";
+    if (error.status === 504 || error.code === "timeout") return "Hivemind demorou demais para responder. Tente novamente em instantes.";
+    return "O Hivemind não conseguiu terminar o plano do projeto. Tente novamente.";
+  }
   if (error.status === 401 || error.status === 403) return "Hivemind needs a server key with project and chat access.";
   if (error.status === 402) return "Hivemind billing or plan access is blocking this request.";
   if (error.status === 429) return "Hivemind is rate limited or out of quota. Give it a moment and try again.";

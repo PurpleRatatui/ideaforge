@@ -63,7 +63,7 @@ export default function IdeaRoasterPage() {
     const timeout = window.setTimeout(() => controller.abort(), 160000);
     setHivemindPlan(null); setHivemindError(""); setHivemindLoading(true);
     try {
-      const response = await fetch("/api/hivemind", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ idea: ideaText, result: roastResult }), signal: controller.signal });
+      const response = await fetch("/api/hivemind", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ idea: ideaText, result: roastResult, locale: "en" }), signal: controller.signal });
       const data = await response.json() as HivemindPlan & { error?: string };
       if (!response.ok) throw new Error(data.error || "Hivemind could not finish the plan. Please try again.");
       if (run === hivemindRun.current) setHivemindPlan(data);

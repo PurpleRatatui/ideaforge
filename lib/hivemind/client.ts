@@ -9,6 +9,7 @@ export type HivemindCredentials = {
 };
 
 export type HivemindPersona = "genius-strategist" | "gtm-architect" | "ghostwriter" | "general-assistant";
+export type HivemindLocale = "pt-BR" | "en";
 
 export type HivemindSource = {
   title: string;
@@ -65,29 +66,30 @@ export async function shapeIdeaWithHivemind(
   credentials: HivemindCredentials,
   idea: string,
   result: ResultModel,
+  locale: HivemindLocale = "en",
 ): Promise<HivemindShapeOutput> {
-  const createdProject = await createProject(credentials, idea, result);
+  const createdProject = await createProject(credentials, idea, result, locale);
   const settledProject = await waitForProject(credentials, createdProject.id, createdProject.enrichmentStatus);
   const project = { ...createdProject, ...settledProject, ready: settledProject.enrichmentStatus === "ready" };
 
   const rebuild = await chatWithPersistenceFallback(credentials, {
     projectId: project.id,
     persona: "genius-strategist",
-    text: buildRebuildPrompt(idea, result),
+    text: buildRebuildPrompt(idea, result, locale),
     startConversation: true,
   });
 
   const gtm = await chatWithHistoryFallback(credentials, {
     projectId: project.id,
     persona: "gtm-architect",
-    text: buildGtmPrompt(idea, result, rebuild.response),
+    text: buildGtmPrompt(idea, result, rebuild.response, locale),
     conversationId: rebuild.conversationId,
   });
 
   return { project, rebuild, gtm };
 }
 
-async function createProject(credentials: HivemindCredentials, idea: string, result: ResultModel) {
+async function createProject(credentials: HivemindCredentials, idea: string, result: ResultModel, locale: HivemindLocale) {
   const name = inferProjectName(idea);
   const projectType = sanitizeProjectType(result.category);
   const response = await hivemindJson<{
@@ -98,7 +100,7 @@ async function createProject(credentials: HivemindCredentials, idea: string, res
     method: "POST",
     body: JSON.stringify({
       project_name: name,
-      description: buildProjectDescription(idea, result),
+      description: buildProjectDescription(idea, result, locale),
       project_type: projectType?.length ? projectType : undefined,
       stage: "idea",
       objectives: [
@@ -264,9 +266,37 @@ async function hivemindJson<T>(
   }
 }
 
-function buildProjectDescription(idea: string, result: ResultModel) {
-  const assessment = formatAssessment(result);
+const DIMENSION_LABELS_PT: Record<DimensionKey, string> = {
+  problem: "Força do problema",
+  customer: "Clareza da cliente",
+  demand: "Demanda existente",
+  money: "Disposição a pagar",
+  reach: "Caminho de distribuição",
+  different: "Diferenciação",
+  buildable: "Viabilidade",
+  shareable: "Potencial de indicação",
+  adoption: "Adoção",
+  appeal: "Apelo imediato",
+  fun: "Diversão",
+};
+
+function buildProjectDescription(idea: string, result: ResultModel, locale: HivemindLocale) {
+  const assessment = formatAssessment(result, locale);
   const maxIdeaLength = Math.max(1000, 4900 - assessment.length);
+  if (locale === "pt-BR") {
+    return [
+      "Ideia de startup enviada pelo Idea Forge depois de um roast do KillMyIdea.",
+      "",
+      "IDEIA ORIGINAL",
+      truncate(idea, maxIdeaLength),
+      "",
+      "AVALIAÇÃO KILLMYIDEA",
+      assessment,
+      "",
+      "Use este projeto para ajustar cliente, posicionamento, MVP, plano de validação e caminho de go-to-market. Trate o roast como hipótese, não como evidência de mercado.",
+    ].join("\n").slice(0, 5000);
+  }
+
   return [
     "A startup idea submitted through Idea Forge after a KillMyIdea roast.",
     "",
@@ -280,7 +310,32 @@ function buildProjectDescription(idea: string, result: ResultModel) {
   ].join("\n").slice(0, 5000);
 }
 
-function buildRebuildPrompt(idea: string, result: ResultModel) {
+function buildRebuildPrompt(idea: string, result: ResultModel, locale: HivemindLocale) {
+  if (locale === "pt-BR") {
+    return [
+      "Ajuste esta ideia de startup depois do roast do KillMyIdea.",
+      "Responda exclusivamente em português do Brasil. Não use títulos, labels ou bullets em inglês.",
+      "Use tom direto, prático e específico para uma participante de hackathon da comunidade She Is Solana.",
+      "",
+      "IDEIA ORIGINAL",
+      idea,
+      "",
+      "AVALIAÇÃO KILLMYIDEA",
+      formatAssessment(result, locale),
+      "",
+      "Devolva Markdown conciso com exatamente estas seções:",
+      "## Ideia ajustada",
+      "## Cliente inicial",
+      "## Problema e alternativas",
+      "## Diferenciação",
+      "## MVP pequeno",
+      "## Hipótese de preço",
+      "## Suposições para validar",
+      "",
+      "Ataque primeiro as dimensões com menor pontuação. Não invente evidência de clientes, tamanho de mercado, tração nem estatísticas. Marque afirmações incertas como suposições.",
+    ].join("\n");
+  }
+
   return [
     "Improve this startup idea after its KillMyIdea roast.",
     "",
@@ -288,7 +343,7 @@ function buildRebuildPrompt(idea: string, result: ResultModel) {
     idea,
     "",
     "KILLMYIDEA ASSESSMENT",
-    formatAssessment(result),
+    formatAssessment(result, locale),
     "",
     "Return concise Markdown with these sections:",
     "## Sharper Idea",
@@ -303,7 +358,35 @@ function buildRebuildPrompt(idea: string, result: ResultModel) {
   ].join("\n");
 }
 
-function buildGtmPrompt(idea: string, result: ResultModel, rebuild: string) {
+function buildGtmPrompt(idea: string, result: ResultModel, rebuild: string, locale: HivemindLocale) {
+  if (locale === "pt-BR") {
+    return [
+      "Crie um plano prático de go-to-market para esta ideia ajustada.",
+      "Responda exclusivamente em português do Brasil. Não use títulos, labels ou bullets em inglês.",
+      "Use tom direto, prático e específico para uma participante de hackathon da comunidade She Is Solana.",
+      "",
+      "IDEIA ORIGINAL",
+      idea,
+      "",
+      "AVALIAÇÃO KILLMYIDEA",
+      formatAssessment(result, locale),
+      "",
+      "DIREÇÃO AJUSTADA",
+      truncate(rebuild, 2600),
+      "",
+      "Devolva Markdown conciso com exatamente estas seções:",
+      "## Nicho inicial",
+      "## Posicionamento",
+      "## Primeiro canal de aquisição",
+      "## Mensagem exemplo",
+      "## Plano de 30 dias",
+      "## Métricas",
+      "## Critérios para parar ou pivotar",
+      "",
+      "Mantenha o plano específico e testável. Prefira descoberta direta com usuárias e experimentos baratos a campanhas amplas de marca.",
+    ].join("\n");
+  }
+
   return [
     "Create a practical go-to-market plan for this improved startup idea.",
     "",
@@ -311,7 +394,7 @@ function buildGtmPrompt(idea: string, result: ResultModel, rebuild: string) {
     idea,
     "",
     "KILLMYIDEA ASSESSMENT",
-    formatAssessment(result),
+    formatAssessment(result, locale),
     "",
     "IMPROVED DIRECTION",
     truncate(rebuild, 2600),
@@ -329,14 +412,15 @@ function buildGtmPrompt(idea: string, result: ResultModel, rebuild: string) {
   ].join("\n");
 }
 
-function formatAssessment(result: ResultModel) {
+function formatAssessment(result: ResultModel, locale: HivemindLocale) {
+  const labels = locale === "pt-BR" ? DIMENSION_LABELS_PT : DIMENSION_LABELS;
   return [
-    `Verdict: ${result.verdict} IT`,
-    `Score: ${result.score}/100`,
-    `Category: ${result.category || "Other"}`,
+    locale === "pt-BR" ? `Veredito: ${result.verdict}` : `Verdict: ${result.verdict} IT`,
+    locale === "pt-BR" ? `Pontuação: ${result.score}/100` : `Score: ${result.score}/100`,
+    locale === "pt-BR" ? `Categoria: ${result.category || "Outra"}` : `Category: ${result.category || "Other"}`,
     ...Object.entries(result.dimensions)
       .sort((a, b) => a[1] - b[1])
-      .map(([key, value]) => `${DIMENSION_LABELS[key as DimensionKey] || key}: ${value}/100`),
+      .map(([key, value]) => `${labels[key as DimensionKey] || key}: ${value}/100`),
   ].join("\n");
 }
 
