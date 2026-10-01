@@ -1,4 +1,5 @@
 import { buildState, composeEvaluation, validateIdea } from "@/lib/killmyidea/evaluate";
+import { composeLocalEvaluation } from "@/lib/killmyidea/local-evaluate";
 import { questionsFor } from "@/lib/killmyidea/questions";
 import { askJev, resolveJevCredentials, TypeSafeError } from "@/lib/killmyidea/typesafe";
 function json(body: unknown, status = 200) { return Response.json(body, { status, headers: { "Cache-Control": "no-store" } }); }
@@ -14,12 +15,16 @@ export async function POST(request: Request) {
   let credentials = resolveJevCredentials(process.env);
   if (!credentials) { try { const { env } = await import("cloudflare:workers"); credentials = resolveJevCredentials(env as unknown as Record<string,string>); } catch {} }
   if (!credentials) return json({ error: "Live roasting isn’t connected yet. You can explore the example below while we finish setup." }, 503);
+  const started = performance.now();
   try {
     const { response, latencyMs } = await askJev({ ...credentials, state: buildState(valid.idea), questions: questionsFor("money") });
     const { debug: _debug, ...result } = composeEvaluation(response, latencyMs, false, "money");
     return json(result);
   } catch (e) {
-    const busy = e instanceof TypeSafeError && (e.status === 429 || e.status === 529);
-    return json({ error: busy ? "The evaluator is busy. Give it a moment and try again." : "The evaluation couldn’t finish. Please try again." }, busy ? 503 : 502);
+    if (e instanceof TypeSafeError || e instanceof Error) {
+      const { debug: _debug, ...result } = composeLocalEvaluation(valid.idea, Math.round(performance.now() - started), "money");
+      return json(result);
+    }
+    return json({ error: "The evaluation couldn’t finish. Please try again." }, 502);
   }
 }

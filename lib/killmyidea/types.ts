@@ -19,6 +19,7 @@ export type ResultModel = {
   understandable?: number
   decisions?: number
   latencyMs?: number
+  evaluationSource?: 'jev' | 'local-fallback'
 }
 
 export type DimensionDebug = {
