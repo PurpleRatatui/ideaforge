@@ -27,7 +27,7 @@ type LandingCopy = {
   features: { label: string; title: string; cards: Card[] };
   journey: { label: string; title: string; items: Card[] };
   organizers: { label: string; title: string; cards: SimpleCard[] };
-  mentorship: { label: string; title: string; body: string; people: PersonCard[]; event: { label: string; title: string; body: string; cta: string; href: string } };
+  mentorship: { label: string; title: string; body: string; people: PersonCard[] };
   hackathon: { label: string; title: string; body: string; official: string; date: string; edition: string; cardText: string };
   roaster: { label: string; title: string; body: string; cta: string };
   footer: { text: string; cta: string };
@@ -120,13 +120,6 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
           featuredCta: { label: "Agendar mentoria", href: "https://cal.com/anawestfal/sheissolana" },
         },
       ],
-      event: {
-        label: "PRÓXIMO ENCONTRO",
-        title: "Galera do RJ",
-        body: "O próximo encontro da comunidade no Rio de Janeiro já está com inscrição aberta no Luma.",
-        cta: "Inscrever no Luma",
-        href: "https://luma.com/gyphbsbo",
-      },
     },
     hackathon: {
       label: "AGORA: COLOSSEUM",
@@ -231,13 +224,6 @@ export const landingCopy: Record<"pt" | "en", LandingCopy> = {
           featuredCta: { label: "Book mentorship", href: "https://cal.com/anawestfal/sheissolana" },
         },
       ],
-      event: {
-        label: "NEXT MEETUP",
-        title: "Rio de Janeiro group",
-        body: "The next community meetup in Rio de Janeiro is open for registration on Luma.",
-        cta: "Register on Luma",
-        href: "https://luma.com/gyphbsbo",
-      },
     },
     hackathon: {
       label: "NOW: COLOSSEUM",
@@ -397,16 +383,6 @@ export default function SheIsSolanaLanding({ copy }: { copy: LandingCopy }) {
             </article>
           ))}
         </div>
-        <aside className="sis-next-event">
-          <div>
-            <span className="mono">{copy.mentorship.event.label}</span>
-            <h3>{copy.mentorship.event.title}</h3>
-            <p>{copy.mentorship.event.body}</p>
-          </div>
-          <a className="sis-button secondary" href={copy.mentorship.event.href} target="_blank" rel="noreferrer">
-            <CalendarDays size={18} /> {copy.mentorship.event.cta}
-          </a>
-        </aside>
       </section>
 
       <section className="sis-section sis-hackathon wrap" id="hackathon" aria-labelledby="hackathon-title">

@@ -1853,8 +1853,7 @@ h1 > span {
   margin-top: 0;
 }
 
-.sis-person-copy h3,
-.sis-next-event h3 {
+.sis-person-copy h3 {
   margin: 18px 0 12px;
   font-size: 1.35rem;
   font-weight: 900;
@@ -1862,8 +1861,7 @@ h1 > span {
   text-transform: uppercase;
 }
 
-.sis-person-copy p,
-.sis-next-event p {
+.sis-person-copy p {
   margin: 0;
   font-size: 0.98rem;
   line-height: 1.62;
@@ -1905,34 +1903,6 @@ h1 > span {
 .sis-person-links .sis-person-cta:hover {
   color: var(--ink);
   background: var(--yellow);
-}
-
-.sis-next-event {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 18px;
-  padding: 24px;
-  color: var(--cream);
-  background: var(--superteam-dark);
-  border: 2px solid var(--ink);
-  border-radius: 8px;
-  box-shadow: 9px 9px 0 var(--teal);
-}
-
-.sis-next-event .mono {
-  color: var(--superteam-yellow);
-  font-weight: 900;
-}
-
-.sis-next-event h3 {
-  color: var(--cream);
-}
-
-.sis-next-event p {
-  max-width: 720px;
-  color: #fff8dd;
 }
 
 .sis-hackathon {
@@ -2389,8 +2359,7 @@ h1 > span {
     transform: none;
   }
 
-  .sis-roaster-cta,
-  .sis-next-event {
+  .sis-roaster-cta {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -2422,8 +2391,7 @@ h1 > span {
   .sis-program-card,
   .sis-hackathon-main,
   .sis-hackathon-card,
-  .sis-roaster-cta,
-  .sis-next-event {
+  .sis-roaster-cta {
     padding: 22px;
     box-shadow: 8px 8px 0 var(--coral);
   }
